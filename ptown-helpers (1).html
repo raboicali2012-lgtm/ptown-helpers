@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ptown Helpers — Pleasanton's Teen-Run Home Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0d0d0d;
+    --white: #f8f8f6;
+    --gray-light: #e8e8e4;
+    --gray-mid: #9a9a94;
+    --gray-dark: #3a3a36;
+    --green: #4a8c5c;
+    --green-light: #6ab57a;
+    --green-pale: #e8f3ec;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(13,13,13,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--green-light); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--gray-mid);
+    text-decoration: none; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--green);
+    color: var(--white) !important;
+    padding: 9px 20px;
+    border-radius: 3px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-light) !important; color: var(--black) !important; }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 100vh;
+    background: var(--black);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22vw; font-weight: 900;
+    color: rgba(255,255,255,0.025);
+    letter-spacing: -0.04em;
+    right: -2vw; bottom: -4vw;
+    line-height: 0.85;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-content {
+    padding: 80px 48px 80px 80px;
+    position: relative; z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(74,140,92,0.15);
+    border: 1px solid rgba(74,140,92,0.3);
+    color: var(--green-light);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before { content: '●'; font-size: 0.5rem; }
+
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  h1 .accent { color: var(--green-light); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 44px;
+    font-weight: 400;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--green);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 16px 32px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--green-light); color: var(--black); transform: translateY(-2px); }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--gray-mid);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 16px 32px;
+    border-radius: 3px;
+    text-decoration: none;
+    border: 1px solid var(--gray-dark);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gray-mid); color: var(--white); }
+
+  .hero-visual {
+    padding: 80px 80px 80px 20px;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+
+  .service-card-mini {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 16px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .service-card-mini:hover {
+    background: rgba(74,140,92,0.1);
+    border-color: rgba(74,140,92,0.3);
+    transform: translateX(6px);
+  }
+
+  .service-icon {
+    font-size: 1.5rem;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(74,140,92,0.15);
+    border-radius: 4px; flex-shrink: 0;
+  }
+
+  .service-card-mini h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--white); letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .service-card-mini p {
+    font-size: 0.82rem; color: var(--gray-mid); margin-top: 2px;
+  }
+
+  .hero-slogan {
+    margin-top: 60px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 400;
+    color: var(--gray-mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { scroll-margin-top: 80px; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .section-intro {
+    font-size: 1rem; color: var(--gray-mid); line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* ─── SERVICES ─── */
+  #services {
+    padding: 100px 80px;
+    background: var(--white);
+  }
+
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px; flex-wrap: wrap; gap: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    border: 2px solid var(--black);
+  }
+
+  .svc-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    padding: 36px 32px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .svc-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .svc-card:hover { background: var(--black); }
+  .svc-card:hover h3 { color: var(--white); }
+  .svc-card:hover p { color: var(--gray-mid); }
+  .svc-card:hover .svc-price { color: var(--green-light); }
+  .svc-card:hover::before { transform: scaleX(1); }
+
+  .svc-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--gray-mid); letter-spacing: 0.15em;
+    margin-bottom: 20px;
+  }
+
+  .svc-emoji { font-size: 2rem; margin-bottom: 16px; display: block; }
+
+  .svc-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem; font-weight: 800;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+
+  .svc-card p {
+    font-size: 0.9rem; color: var(--gray-dark); line-height: 1.65;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+  }
+
+  .svc-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--green); letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  /* ─── WHY CHOOSE US ─── */
+  #why {
+    padding: 100px 80px;
+    background: var(--black);
+  }
+
+  #why h2 { color: var(--white); }
+  #why .section-label { color: var(--green-light); }
+  #why .section-intro { color: var(--gray-mid); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 32px;
+    margin-top: 56px;
+  }
+
+  .why-card {
+    padding: 32px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .why-card:hover {
+    border-color: var(--green);
+    background: rgba(74,140,92,0.06);
+  }
+
+  .why-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem; font-weight: 900;
+    color: rgba(74,140,92,0.25);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .why-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem; font-weight: 800;
+    color: var(--white); text-transform: uppercase;
+    letter-spacing: 0.04em; margin-bottom: 10px;
+  }
+
+  .why-card p { font-size: 0.9rem; color: var(--gray-mid); line-height: 1.65; }
+
+  /* ─── ABOUT ─── */
+  #about {
+    padding: 100px 80px;
+    background: var(--green-pale);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-stat-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .stat-box {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 24px;
+    border-left: 4px solid var(--green);
+  }
+
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--black); line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label { font-size: 0.82rem; color: var(--gray-mid); font-weight: 500; }
+
+  .about-story {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 48px;
+    border: 1px solid var(--gray-light);
+    position: relative;
+  }
+
+  .about-story::before {
+    content: '"';
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8rem; font-weight: 900;
+    color: var(--green-pale);
+    position: absolute;
+    top: -10px; left: 30px;
+    line-height: 1;
+  }
+
+  .about-story p {
+    font-size: 0.95rem; line-height: 1.8;
+    color: var(--gray-dark); margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+
+  .about-story p:first-of-type { margin-top: 40px; }
+
+  .about-story .author {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    color: var(--green); letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    background: var(--green);
+    padding: 80px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 32px;
+  }
+
+  .cta-banner h2 {
+    color: var(--white);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    max-width: 540px;
+    margin: 0;
+  }
+
+  .btn-dark {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 18px 38px;
+    border-radius: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-dark:hover { background: var(--gray-dark); transform: translateY(-2px); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    padding: 100px 80px;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info h2 { margin-bottom: 16px; }
+
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .contact-detail:last-of-type { border-bottom: none; }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: var(--green-pale);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+
+  .contact-detail strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray-mid); margin-bottom: 4px;
+  }
+
+  .contact-detail span { font-size: 0.95rem; color: var(--black); }
+
+  /* Form */
+  .contact-form {
+    background: var(--black);
+    border-radius: 6px;
+    padding: 48px;
+  }
+
+  .contact-form h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    color: var(--white); text-transform: uppercase;
+    letter-spacing: 0.04em; margin-bottom: 32px;
+  }
+
+  .form-row { margin-bottom: 20px; }
+  .form-row label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gray-mid); margin-bottom: 8px;
+  }
+
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-row input::placeholder,
+  .form-row textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+  .form-row select option { background: var(--gray-dark); }
+
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus { border-color: var(--green); }
+
+  .form-row textarea { resize: vertical; min-height: 120px; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black);
+    padding: 48px 80px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap; gap: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem; font-weight: 900;
+    color: var(--white); letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--green-light); }
+
+  footer p { font-size: 0.83rem; color: var(--gray-mid); }
+
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gray-mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+
+  /* ─── MOBILE ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 64px; left: 0; right: 0;
+    background: var(--black);
+    padding: 20px 24px;
+    z-index: 99;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .mobile-menu.open { display: block; }
+
+  .mobile-menu a {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--gray-mid); text-decoration: none;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    #home { grid-template-columns: 1fr; }
+    .hero-content { padding: 60px 24px 40px; }
+    .hero-visual { display: none; }
+    .hero-slogan { margin-top: 32px; }
+
+    #services { padding: 70px 24px; }
+    .services-header { flex-direction: column; align-items: flex-start; }
+
+    #why { padding: 70px 24px; }
+
+    #about {
+      grid-template-columns: 1fr;
+      padding: 70px 24px;
+      gap: 40px;
+    }
+
+    .cta-banner { padding: 60px 24px; }
+    .cta-banner { justify-content: center; text-align: center; }
+
+    #contact {
+      grid-template-columns: 1fr;
+      padding: 70px 24px;
+      gap: 48px;
+    }
+
+    .contact-form { padding: 32px 24px; }
+    .form-grid { grid-template-columns: 1fr; }
+
+    footer { padding: 36px 24px; flex-direction: column; text-align: center; }
+
+    .about-stat-block { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Fade in animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Ptown<span>Helpers</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#why" onclick="closeMenu()">Why Us</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#contact" onclick="closeMenu()">Get a Quote</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-text">CLEAN</div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Pleasanton, CA · Teen-Run Business</div>
+    <h1>Your Home.<br><span class="accent">Our Work.</span><br>Done Right.</h1>
+    <p class="hero-sub">
+      We're a crew of motivated Pleasanton teens delivering top-quality home services — pressure washing, bin cleaning, windows, lawn care, and more — at prices that make sense.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get Your Yard Clean Today</a>
+      <a href="#services" class="btn-secondary">Our Services</a>
+    </div>
+    <div class="hero-slogan">Helping Pleasanton, One Home at a Time</div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="service-card-mini">
+      <div class="service-icon">🚿</div>
+      <div>
+        <h3>Pressure Washing</h3>
+        <p>Driveways, walkways & patios — blasted clean</p>
+      </div>
+    </div>
+    <div class="service-card-mini">
+      <div class="service-icon">🗑️</div>
+      <div>
+        <h3>Trash Bin Cleaning</h3>
+        <p>Sanitized, deodorized, and fresh every time</p>
+      </div>
+    </div>
+    <div class="service-card-mini">
+      <div class="service-icon">🪟</div>
+      <div>
+        <h3>Window Cleaning</h3>
+        <p>Streak-free results, inside and out</p>
+      </div>
+    </div>
+    <div class="service-card-mini">
+      <div class="service-icon">🌿</div>
+      <div>
+        <h3>Lawn Mowing</h3>
+        <p>Neat edges, clean lines, every visit</p>
+      </div>
+    </div>
+    <div class="service-card-mini">
+      <div class="service-icon">🏠</div>
+      <div>
+        <h3>Curb Number Painting</h3>
+        <p>Bright, bold address numbers on your curb</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2>Our Services</h2>
+      <p class="section-intro">Every job is done with care, attention to detail, and a drive to earn your trust — and your referral.</p>
+    </div>
+    <a href="#contact" class="btn-primary">Request a Quote</a>
+  </div>
+
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-number">01</div>
+      <span class="svc-emoji">🚿</span>
+      <h3>Pressure Washing</h3>
+      <p>Hard water stains, oil marks, and years of grime don't stand a chance. We blast your driveway, walkways, and patio back to looking brand new — fast and thorough.</p>
+      <span class="svc-price">Starting at $60</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-number">02</div>
+      <span class="svc-emoji">🗑️</span>
+      <h3>Trash Bin Cleaning</h3>
+      <p>Smelly, sticky bins are no fun. We use a foam cannon and pressure washer to fully clean and sanitize your trash cans — leaving them fresh, odor-free, and safe for your family. A small job with a big difference.</p>
+      <span class="svc-price">Starting at $15 / bin · Special packages available</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-number">03</div>
+      <span class="svc-emoji">🪟</span>
+      <h3>Window Cleaning</h3>
+      <p>Crystal-clear windows, zero streaks. We clean interior and exterior panes with care so you can enjoy the view without the smudge. Great for any season.</p>
+      <span class="svc-price">Starting at $40 · Pricing varies by number of windows & location</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-number">04</div>
+      <span class="svc-emoji">🌿</span>
+      <h3>Lawn Mowing</h3>
+      <p>A well-kept lawn says a lot about a home. We mow, edge, and clean up clippings to leave your yard looking sharp every single visit — rain or shine.</p>
+      <span class="svc-price">Starting at $30</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-number">05</div>
+      <span class="svc-emoji">🏠</span>
+      <h3>Curb Number Painting</h3>
+      <p>Faded house numbers make it hard for guests (and emergency services) to find you. We spray-paint bright, clean numbers on your curb that last for years.</p>
+      <span class="svc-price">Starting at $15</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-label">Why Choose Us</div>
+  <h2>Local. Reliable.<br>Priced Right.</h2>
+  <p class="section-intro">We're not a faceless corporation. We're your neighbors — and we hold ourselves to a higher standard on every single job.</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <h3>Teen-Run & Motivated</h3>
+      <p>We're building this from scratch — no shortcuts, no excuses. Every job we do is a chance to prove ourselves, and we treat your home like it's our own reputation on the line.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <h3>Seriously Affordable</h3>
+      <p>Big companies have big overhead. We don't. That means you get fair, competitive pricing without sacrificing quality. Great work doesn't have to cost a fortune.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <h3>Local & Trustworthy</h3>
+      <p>We live in Pleasanton, we go to school here, and we care about this community. You're not hiring a stranger — you're supporting a local kid trying to build something real.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <h3>Attention to Detail</h3>
+      <p>We don't rush through jobs. We show up on time, do the work right the first time, and make sure you're happy before we leave. That's just how we operate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <div class="section-label">Our Story</div>
+    <h2>Teens Building Something Real</h2>
+    <p class="section-intro" style="color: var(--gray-dark);">
+      The Ptown Helpers started with a simple idea: teenagers are capable of more than people give them credit for. We set out to prove it.
+    </p>
+
+    <div class="about-stat-block">
+      <div class="stat-box">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Teen-operated</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Services offered</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Hidden fees</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Community we love</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-story">
+    <p>We're a group of teenagers from Pleasanton, California who decided to stop waiting and start doing. Instead of looking for part-time jobs, we built one — from the ground up, with our own hands, equipment, and determination.</p>
+    <p>From pressure washing driveways and cleaning trash bins with a foam cannon, to washing windows streak-free, painting curb numbers, and keeping lawns sharp — we trained ourselves on every service we offer. Nothing gets added to our list until we know we can do it right.</p>
+    <p>Our goal is straightforward: be the most reliable, affordable option for Pleasanton homeowners who want quality work without the runaround. We show up when we say we will, we do the job properly, and we don't leave until you're satisfied.</p>
+    <p>When you hire The Ptown Helpers, you're not just checking something off your to-do list. You're supporting a local crew that's putting in real work to build something worth being proud of.</p>
+    <span class="author">— The Ptown Helpers Crew, Pleasanton CA</span>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Get Your Yard Clean Today — We'll Handle the Rest.</h2>
+  <a href="#contact" class="btn-dark">Book a Service</a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info">
+    <div class="section-label">Get in Touch</div>
+    <h2>Let's Get to Work</h2>
+    <p class="section-intro" style="margin-bottom: 40px;">Fill out the form or reach us directly by phone or text. We typically respond within 12–24 hours.</p>
+
+    <div class="contact-detail">
+      <div class="contact-icon">📱</div>
+      <div>
+        <strong>Call or Text</strong>
+        <span>(650) 339-3115</span>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">📍</div>
+      <div>
+        <strong>We Serve</strong>
+        <span>Pleasanton, CA and surrounding areas</span>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">⏰</div>
+      <div>
+        <strong>Availability</strong>
+        <span>Fridays after school & all day weekends</span>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">📸</div>
+      <div>
+        <strong>Instagram</strong>
+        <span><a href="https://instagram.com/theptownhelpers" target="_blank" style="color: var(--black); text-decoration: none; border-bottom: 1px solid var(--gray-mid);">@theptownhelpers</a></span>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-icon">💬</div>
+      <div>
+        <strong>Response Time</strong>
+        <span>Within 12–24 hours</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <h3>Request a Free Quote</h3>
+    <p style="font-size:0.82rem; color: var(--gray-mid); margin-bottom: 24px; margin-top: -16px;">⚡ Responses within 12–24 hours</p>
+    <div class="form-grid">
+      <div class="form-row">
+        <label>First Name</label>
+        <input type="text" name="first_name" placeholder="Jane" required>
+      </div>
+      <div class="form-row">
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Smith" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Phone / Text Number</label>
+      <input type="tel" name="phone" placeholder="(925) 555-0000" required>
+    </div>
+    <div class="form-row">
+      <label>Service Needed</label>
+      <select name="service" required>
+        <option value="" disabled selected>Select a service...</option>
+        <option>Pressure Washing</option>
+        <option>Trash Bin Cleaning</option>
+        <option>Window Cleaning</option>
+        <option>Lawn Mowing</option>
+        <option>Curb Number Painting</option>
+        <option>Multiple Services</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Message or Details</label>
+      <textarea name="message" placeholder="Tell us about your home, when you'd like us to come, and any special requests..."></textarea>
+    </div>
+    <div id="form-status" style="display:none; padding: 12px 16px; border-radius: 3px; font-size: 0.9rem; margin-bottom: 14px;"></div>
+    <button class="btn-primary" id="submit-btn" style="width: 100%; font-size: 1rem; padding: 16px;" onclick="submitForm(event)">
+      Send My Request →
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#home" class="footer-logo">Ptown<span>Helpers</span></a>
+  <p>© 2025 The Ptown Helpers · Pleasanton, CA · Helping Pleasanton, One Home at a Time</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+    <a href="https://instagram.com/theptownhelpers" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  async function submitForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+
+    // Collect fields
+    const firstName = document.querySelector('[name="first_name"]').value.trim();
+    const lastName  = document.querySelector('[name="last_name"]').value.trim();
+    const phone     = document.querySelector('[name="phone"]').value.trim();
+    const service   = document.querySelector('[name="service"]').value;
+    const message   = document.querySelector('[name="message"]').value.trim();
+
+    if (!firstName || !phone || !service) {
+      status.style.display = 'block';
+      status.style.background = 'rgba(200,60,60,0.15)';
+      status.style.color = '#f87171';
+      status.textContent = 'Please fill in your name, phone number, and select a service.';
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.7';
+    btn.onclick = null;
+
+    // ── FORMSPREE ──────────────────────────────────────────
+    // 1. Go to https://formspree.io and sign up (free)
+    // 2. Create a new form → copy your Form ID
+    // 3. Replace YOUR_FORM_ID below with it (e.g. "xbjnkpqr")
+    const FORMSPREE_ID = 'myknqzlp';
+    // ───────────────────────────────────────────────────────
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, phone, service, message })
+      });
+
+      if (res.ok) {
+        btn.textContent = '✓ Request Sent! We\'ll be in touch within 24 hrs.';
+        btn.style.background = 'var(--green)';
+        btn.style.opacity = '1';
+        status.style.display = 'none';
+        document.querySelector('[name="first_name"]').value = '';
+        document.querySelector('[name="last_name"]').value = '';
+        document.querySelector('[name="phone"]').value = '';
+        document.querySelector('[name="service"]').value = '';
+        document.querySelector('[name="message"]').value = '';
+      } else {
+        throw new Error('Form error');
+      }
+    } catch {
+      btn.textContent = 'Send My Request →';
+      btn.style.opacity = '1';
+      btn.onclick = submitForm;
+      status.style.display = 'block';
+      status.style.background = 'rgba(200,60,60,0.15)';
+      status.style.color = '#f87171';
+      status.textContent = FORMSPREE_ID === 'YOUR_FORM_ID'
+        ? '⚠ Form not connected yet — see setup instructions below the button.'
+        : 'Something went wrong. Please try texting us directly at (650) 339-3115.';
+    }
+  }
+
+  // Close mobile menu on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+</script>
+</body>
+</html>
